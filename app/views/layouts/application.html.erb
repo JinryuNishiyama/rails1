@@ -11,6 +11,16 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <h1>スケジュール管理アプリ</h1>
+    </header>
+    
+    <main>
+      <%= yield %>
+    </main>
+    
+    <footer>
+      <h1>今日の日付：<%= @date %></h1>
+    </footer>
   </body>
 </html>
