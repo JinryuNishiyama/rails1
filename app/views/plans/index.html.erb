@@ -1,0 +1,35 @@
+<h2>スケジュール一覧（<%= @count %>件）</h2>
+
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+
+<table class="table-index">
+  <tr>
+    <th>タイトル</th>
+    <th>日付</th>
+    <th>開始時刻</th>
+    <th>終了時刻</th>
+    <th>表示</th>
+    <th>編集</th>
+    <th>削除</th>
+  </tr>
+  
+  <% @plans.each do |plan| %>
+    <tr>
+      <td><%= plan.title %></td>
+      <td><%= plan.date.to_s(:date_jp) %></td>
+      <td><%= plan.starting_time.to_s(:time_jp) %></td>
+      <td>
+        <% if plan.ending_time != nil %>
+          <%= plan.ending_time.to_s(:time_jp) %>
+        <% end %>
+      </td>
+      <td><%= link_to "表示", plan, class: "link" %></td>
+      <td><%= link_to "編集", [:edit, plan], class: "link" %></td>
+      <td><%= link_to "削除", plan, method: :delete, data:{confirm: "スケジュールを削除します。よろしいですか？"}, class: "link" %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "新規作成", :new_plan, class: "link" %></p>
